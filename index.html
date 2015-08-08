@@ -36,14 +36,14 @@
 
     <div class="container">
 
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" action= "main.html" method="GET">
           <div class="form-group">
               <input type="text" class="form-control" name="username" placeholder="Email">
           </div>
           <div class="form-group">
               <input type="text" class="form-control" name="password" placeholder="Password">
           </div>
-              <button type="submit" class="btn btn-default">Sign In</button>
+              <input type="submit" class="btn btn-default" value="Sign In" role="button">
       </form>
 
   <!--     <div class="checkbox">
@@ -59,22 +59,22 @@
       </div>
 
       <div class="col-sm-4">
-        <form class="form-signup">
+        <form class="form-signup" action= "main.html" method="GET">
           <p id="create-account" class="form-signup-heading">Create an account now</p>
 
           <p class="form-label"> Full name <p>
-          <input type="text" id="input-name" class="form-control" required autofocus>
+          <input type="text" name="input-name" class="form-control" required autofocus>
 
           <p class="form-label"> School <p>
-          <input type="text" id="input-zip" class="form-control" required>
+          <input type="text" name="input-zip" class="form-control" required>
 
           <p class="form-label"> School-provided email <p>
-          <input type="email" id="inputEmail" class="form-control" required autofocus>
+          <input type="email" name="inputEmail" class="form-control" required autofocus>
            
           <p class="form-label"> Password <p>
-          <input type="password" id="input-password" class="form-control" required>
+          <input type="password" name="input-password" class="form-control" required>
           
-          <a href="main.html" class="btn btn-info btn-block blue btn-primary signup-button" role="button">Get Started</a>
+          <input class="btn btn-info btn-block blue btn-primary signup-button" type="submit" role="button" value="Get Started">
 
         </form>
       </div>
