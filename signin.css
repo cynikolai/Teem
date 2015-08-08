@@ -1,7 +1,11 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #aed3e1;
+  background-color: white;
+}
+
+.container {
+ background-color: #3499db;
 }
 
 .form-signin {
