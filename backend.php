@@ -29,6 +29,7 @@ function sign_up($username,$password,$school_id,$email)
 	} catch (ParseException $ex) {
 	  // Show the error message somewhere and let the user try again.
 	}
+	sign_in($username,$password);
 }
 
 function sign_in($username,$password)
