@@ -1,7 +1,6 @@
 <?php
 include 'vendor/autoload.php';
 
-
 use Parse\ParseObject;
 use Parse\ParseQuery;
 use Parse\ParseACL;
@@ -13,13 +12,82 @@ use Parse\ParseAnalytics;
 use Parse\ParseFile;
 use Parse\ParseCloud;
 use Parse\ParseClient;
+
 ParseClient::initialize("ZnhCsGSUhnteG2rwpNijgcEmr5PruwPMW6tIH4yB", "d6D3EzI9qwXsUfrQ1Vo82YHVDs89WrHDaGtWRomA", "CApaQ8a6hIvw3PRMoBrcjvK22jVxuyxvB7UaPkZN");
+
+
+function sign_up($username,$password,$school_id,$email)
+{
+	$user = new ParseUser();
+	$user->set("username", $username);
+	$user->set("password", $password);
+	$user->set("email", $email);
+	$user->set("school_id", $zipcode);
+	try {
+	 $user->signUp();
+	  // Hooray! Let them use the app now.
+	} catch (ParseException $ex) {
+	  // Show the error message somewhere and let the user try again.
+	}
+}
+
+function sign_in($username,$password)
+{
+	try {
+  	$user = ParseUser::logIn($username, $password);
+  	// Do stuff after successful login.
+	} catch (ParseException $error) {
+  // The login failed. Check error to see why.
+	}
+}
+
+function get_district_id($school_id)
+{
+	$query = new ParseQuery("sc13prelim");
+	$query->equalTo("school_id",$school_id);
+	$object = $query->first();
+	return $object->get("district_id");
+}
+
+function get_school_users()
+{
+	$currentUser = ParseUser::getCurrentUser();
+	$school_id = $currentUser->get("school_id");
+	$query = ParseUser::query();
+	$query->equalTo("school_id", $school_id); 
+	$results = $query->find();
+	return results;
+}
+
+function get_district_users()
+{
+	$currentUser = ParseUser::getCurrentUser();
+	$school_id = $currentUser->get("school_id");
+	$district_id = get_district_id($school_id);
+	$query = ParseUser::query();
+	$query->equalTo("district_id", $district_id); 
+	$results = $query->find();
+	return results;
+}
+
+if(isset($_GET["input-username"]))
+{
+	sign_up($_GET["input-name"],$_GET["input-password"],$_GET["input-zip"],$_GET["input-email"]);
+}
+else
+{
+	sign_in($_GET["username"],$_GET["password"]);
+}
+$school_users = get_school_users();
+$district_users = get_district_users();
 
 echo('<div id="page">
 		<div class="header Fixed">
 			<a href="#menu"></a>
 			<span>Teem Main Page</span>
 			<span class="stick-right">Welcome!');
+	$currentUser = ParseUser::getCurrentUser();
+	echo($currentUser->get("username"));
 
 echo('</span>
 		</div>
