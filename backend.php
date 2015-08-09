@@ -74,7 +74,6 @@ function get_district_users($currentUser)
 	$query->equalTo("district_id", $district_id); 
 	$results = $query->find();
 	return results;
-	*/
 }
 
 if(isset($_GET["input-name"]))
