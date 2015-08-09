@@ -1,4 +1,20 @@
 <?php
+include 'vendor/autoload.php';
+
+
+use Parse\ParseObject;
+use Parse\ParseQuery;
+use Parse\ParseACL;
+use Parse\ParsePush;
+use Parse\ParseUser;
+use Parse\ParseInstallation;
+use Parse\ParseException;
+use Parse\ParseAnalytics;
+use Parse\ParseFile;
+use Parse\ParseCloud;
+use Parse\ParseClient;
+ParseClient::initialize("ZnhCsGSUhnteG2rwpNijgcEmr5PruwPMW6tIH4yB", "d6D3EzI9qwXsUfrQ1Vo82YHVDs89WrHDaGtWRomA", "CApaQ8a6hIvw3PRMoBrcjvK22jVxuyxvB7UaPkZN");
+
 echo('<div id="page">
 		<div class="header Fixed">
 			<a href="#menu"></a>
@@ -18,17 +34,23 @@ echo('</span>
 
 				</div>
 				<div id="first">
+					');
+echo('
 					<p><strong>This is the first section.</strong><br />
 						Notice how the fixed header and footer slide out along with the page.</p>
 
 						<p><a href="#menu">Open the menu.</a></p>
 					</div>
 					<div id="second">
+');
+echo('
 						<p><strong>This is the second section.</strong><br />
 							You can also drag the page to the right to open the menu.</p>
 							<p><a href="#menu">Open the menu.</a></p>
 						</div>
 						<div id="third">
+');
+echo('
 							<p><strong>This is the third section.</strong><br />
 								<a href="#menu">Open the menu.</a></p>
 							</div>
