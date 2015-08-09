@@ -30,6 +30,7 @@ function sign_up($username,$password,$school_id,$email)
 	  // Show the error message somewhere and let the user try again.
 	}
 	sign_in($username,$password);
+	return $user;
 }
 
 function sign_in($username,$password)
@@ -40,6 +41,7 @@ function sign_in($username,$password)
 	} catch (ParseException $error) {
   // The login failed. Check error to see why.
 	}
+	return $user;
 }
 
 function get_district_id($school_id)
@@ -52,32 +54,42 @@ function get_district_id($school_id)
 
 function get_school_users()
 {
+	/*
 	$currentUser = ParseUser::getCurrentUser();
-	$school_id = $currentUser->get("school_id");
+	if($currentUser != NULL)
+	{
+		$school_id = $currentUser->get("school_id");		
+	}	
 	$query = ParseUser::query();
 	$query->equalTo("school_id", $school_id); 
 	$results = $query->find();
 	return results;
+	*/
 }
 
 function get_district_users()
 {
+	/*
 	$currentUser = ParseUser::getCurrentUser();
-	$school_id = $currentUser->get("school_id");
+	if($currentUser != NULL)
+	{
+		$school_id = $currentUser->get("school_id");
+	}	
 	$district_id = get_district_id($school_id);
 	$query = ParseUser::query();
 	$query->equalTo("district_id", $district_id); 
 	$results = $query->find();
 	return results;
+	*/
 }
 
 if(isset($_GET["input-username"]))
 {
-	sign_up($_GET["input-name"],$_GET["input-password"],$_GET["input-zip"],$_GET["input-email"]);
+	$user = sign_up($_GET["input-name"],$_GET["input-password"],$_GET["input-zip"],$_GET["input-email"]);
 }
 else
 {
-	sign_in($_GET["username"],$_GET["password"]);
+	$user = sign_in($_GET["username"],$_GET["password"]);
 }
 $school_users = get_school_users();
 $district_users = get_district_users();
@@ -87,8 +99,9 @@ echo('<div id="page">
 			<a href="#menu"></a>
 			<span>Teem Main Page</span>
 			<span class="stick-right">Welcome!');
-	$currentUser = ParseUser::getCurrentUser();
-	echo($currentUser->get("username"));
+	if($user != NULL)
+	{
+	echo($user->get("username"));}
 
 echo('</span>
 		</div>
