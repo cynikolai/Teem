@@ -27,7 +27,7 @@ function sign_up($username,$password,$school_id,$email)
 	 $user->signUp();
 	  // Hooray! Let them use the app now.
 	} catch (ParseException $ex) {
-	  // Show the error message somewhere and let the user try again.
+	  echo "We're Screwed";
 	}
 	sign_in($username,$password);
 	return $user;
@@ -83,7 +83,7 @@ function get_district_users()
 	*/
 }
 
-if(isset($_GET["input-username"]))
+if(isset($_GET["input-name"]))
 {
 	$user = sign_up($_GET["input-name"],$_GET["input-password"],$_GET["input-zip"],$_GET["input-email"]);
 }
