@@ -61,7 +61,6 @@ function get_school_users($currentUser)
 	$query->equalTo("school_id", $school_id); 
 	$results = $query->find();
 	return results;
-	*/
 }
 
 function get_district_users($currentUser)
@@ -120,6 +119,7 @@ echo('
 					</div>
 					<div id="second">
 ');
+
 echo('
 						<p><strong>This is the second section.</strong><br />
 							You can also drag the page to the right to open the menu.</p>
@@ -127,6 +127,7 @@ echo('
 						</div>
 						<div id="third">
 ');
+
 echo('
 							<p><strong>This is the third section.</strong><br />
 								<a href="#menu">Open the menu.</a></p>
