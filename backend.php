@@ -27,7 +27,6 @@ function sign_up($username,$password,$school_id,$email)
 	 $user->signUp();
 	  // Hooray! Let them use the app now.
 	} catch (ParseException $ex) {
-	  echo "We're Screwed";
 	}
 	sign_in($username,$password);
 	return $user;
@@ -52,10 +51,8 @@ function get_district_id($school_id)
 	return $object->get("district_id");
 }
 
-function get_school_users()
+function get_school_users($currentUser)
 {
-	/*
-	$currentUser = ParseUser::getCurrentUser();
 	if($currentUser != NULL)
 	{
 		$school_id = $currentUser->get("school_id");		
@@ -67,10 +64,8 @@ function get_school_users()
 	*/
 }
 
-function get_district_users()
+function get_district_users($currentUser)
 {
-	/*
-	$currentUser = ParseUser::getCurrentUser();
 	if($currentUser != NULL)
 	{
 		$school_id = $currentUser->get("school_id");
@@ -91,17 +86,17 @@ else
 {
 	$user = sign_in($_GET["username"],$_GET["password"]);
 }
-$school_users = get_school_users();
-$district_users = get_district_users();
+$school_users = get_school_users($user);
+$district_users = get_district_users($user);
 
 echo('<div id="page">
 		<div class="header Fixed">
 			<a href="#menu"></a>
 			<span>Teem Main Page</span>
-			<span class="stick-right">Welcome!');
+			<span class="stick-right">Welcome ');
 	if($user != NULL)
 	{
-	echo($user->get("username"));}
+	echo($user->get("username") . "!");}
 
 echo('</span>
 		</div>
